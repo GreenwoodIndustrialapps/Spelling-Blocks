@@ -126,3 +126,14 @@ a.name { text-decoration: none; }
   .mail { font-size: 16px; padding: 12px 16px; max-width: 100%; text-align: center; }
   .policy h2 { font-size: 24px; }
 }
+
+/* Animated star on the home page: eight frames shown in turn, 0.12 s each (as in the app); a still picture when the visitor has asked for reduced motion */
+.hero .art .wave { position: relative; display: grid; width: 100%; max-width: 470px; margin: 0 auto; filter: drop-shadow(0 16px 14px rgba(0,0,0,.35)); }
+.hero .art .wave img { grid-area: 1 / 1; width: 100%; max-width: none; height: auto; filter: none; visibility: hidden; }
+.hero .art .wave img.still { visibility: visible; }
+@keyframes wavestep { 0% { visibility: visible; } 12.5% { visibility: hidden; } 100% { visibility: hidden; } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero .art .wave img.still { display: none; }
+  .hero .art .wave img.f { animation: wavestep 0.96s step-end infinite; }
+}
+@media (max-width: 720px) { .hero .art .wave { max-width: 330px; } }
